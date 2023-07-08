@@ -1,0 +1,176 @@
+
+Date: 2/7/2023
+Task:
+    comblete the database
+    work on dashboard
+
+
+DB:-
+Tables:
+*- user 
+*- therapist
+*- patient
+*- admin
+*- specialty contain sub 
+*- interests
+*- feedback
+*- experience
+*- education
+*- schedules
+*- blog
+*- categoriesBlog contain sub
+*- faqs contain faqsGeneral
+*- quizzes
+*- res
+*- res_ques
+
+users:- **
+id                      integer
+name                    string
+role                    enum
+gender                  enum
+number                  integer
+email                   string
+password                string
+
+Therapists:- **
+id                      integer
+user_id                 forenId
+specialty_id            forenId
+language                string
+country                 string
+address                 string
+subSpecialty_id         forenId
+interests_id            forenId
+sessions                integer
+rate                    double
+review                  double
+communicationSkills     double
+effectiveSolutions      double
+understandSituation     double
+CommitmentSessionDates  double
+date                    date
+time                    time
+price_60                integer
+price_30                integer
+isPsychotherapy         boolean
+Connected               boolean
+isBestTherapist         boolean
+image                   string
+
+patients:- **
+id                      integer
+user_id                 forenId
+
+admins:-
+id                      integer
+user_id                 forenId
+
+specialties:-
+id                      integer
+name                    integer
+parent_id               integer
+
+interests:-
+id                      integer
+name                    string
+
+feedbacks:-
+id                      integer
+user_id                 forenId
+rate                    double
+feedback                string
+date                    date
+therapist_id            forenId
+
+experiences:-
+id                      integer
+user_id                 forenId
+title                   string
+place                   string
+fromDate                date
+toDate                  date
+
+educations:-
+id                      integer
+user_id                 forenId
+title                   string
+place                   string
+fromDate                date
+toDate                  date
+
+schedules:-
+id                      integer
+user_id                 forenId
+date                    date
+
+blogs:-
+id                      integer
+user_id                 forenId
+title                   string
+categoryBlogs_id             forenId
+subCategoryBlogs_id          forenId
+description             text
+cover                   file
+
+categoryBlogs:-
+id                      integer
+name                    string
+
+faqs:-
+id                      integer
+question                string
+answer                  text
+
+faqs_General:- ** - **
+id                      integer
+question                string
+answer                  text
+
+quizzes:-
+id                      integer
+name                    string
+duration                integer
+
+quizzes_questions:-
+id                      integer
+quizze_id               forenId
+opt1                    string
+opt2                    string
+opt3                    string
+opt4                    string
+ans                     string
+
+res:-
+id                      integer
+name                    string
+
+res_questions:-
+id                      integer
+res_id                  forenId
+question                string
+opt1                    string
+opt2                    string
+opt3                    string
+
+
+
+
+interests               table
+feedback                table
+experience              table
+education               table
+schedules               table
+blog                    table
+categoriesBlog          table
+faqs                    table
+quizzes                 table
+result                  table
+res_quiz                table
+res_ques                table
+
+
+
+
+
+
