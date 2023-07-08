@@ -1,0 +1,23 @@
+// welcome all
+
+// required to use this project :
+
+// install git
+// install xampp
+// install php 8.2
+// install composer
+
+// required when you install this project from github directly:
+
+// write these commands in cmd:
+// git clone https://....
+// 
+
+// required to run the project :
+
+// write this command in terminal of the project "composer install"
+// write this command in terminal of the project "php artisan key:generate"
+// clone the .env.example and change the name to .env
+// inside env file put the database name
+
+// At The End Have A Nice Experience
