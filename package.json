@@ -4,7 +4,6 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "watch": "vite --watch",
         "production": "npm run build"
     },
     "devDependencies": {
