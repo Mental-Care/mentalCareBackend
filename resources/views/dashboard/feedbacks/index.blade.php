@@ -1,19 +1,18 @@
 @extends('layouts.master')
 
+@section('title', 'feedbacks')
 
-@section('title', 'interests')
-
-@section('pageName', 'Interests Page')
+@section('pageName', 'Feedbacks Page')
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active">Interests Page</li>
+    <li class="breadcrumb-item active">Feedbacks Page</li>
 @endsection
 
 @section('content')
 
     <div class="mb-5">
-        <a href="{{ route('interests.create') }}" class="btn btn-sm btn-outline-primary">Create New</a>
+        <a href="{{ route('feedbacks.create') }}" class="btn btn-sm btn-outline-primary">Create New</a>
     </div>
 
     @if (session()->has('success'))
@@ -32,23 +31,28 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>User ID</th>
+                <th>user_id</th>
+                <th>therapist_id</th>
+                <th>rate</th>
+                <th>text</th>
+                <th>date</th>
                 <th colspan="2"></th>
             </tr>
         </thead>
         <tbody>
-            {{-- @if ($interests->count(0)) --}}
-            @forelse ($interests as $interest)
+            @forelse ($feedbacks as $feedback)
                 <tr>
-                    <td>{{ $interest->id }}</td>
-                    <td>{{ $interest->name }}</td>
-                    <td>{{ $interest->user_id }}</td>
+                    <td>{{ $feedback->id }}</td>
+                    <td>{{ $feedback->user_id }}</td>
+                    <td>{{ $feedback->therapist_id }}</td>
+                    <td>{{ $feedback->rate }}</td>
+                    <td>{{ $feedback->text }}</td>
+                    <td>{{ $feedback->date }}</td>
                     <td>
-                        <a href="{{ route('interests.edit', $interest->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
+                        <a href="{{ route('feedbacks.edit', $feedback->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
                     </td>
                     <td>
-                        <form action="{{ route('interests.destroy', $interest->id) }}" method="post">
+                        <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="post">
                             @csrf
                             {{-- Form Method Spoofing --}}
                             {{-- <input type="hidden" name="_method" value="delete"> --}}
@@ -60,7 +64,7 @@
 
             @empty
                 <tr>
-                    <td colspan="7"> No interests defind.</td>
+                    <td colspan="7"> No feedbacks defind.</td>
                 </tr>
             @endforelse
         </tbody>

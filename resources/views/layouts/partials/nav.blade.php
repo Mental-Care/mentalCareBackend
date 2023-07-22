@@ -1,92 +1,60 @@
-<!-- Sidebar Menu -->
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
         with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a class="nav-link collapsed {{ Request::routeIs('dashboard') ? 'active' : '' }}"
-                href="{{ route('dashboard') }}" aria-expanded="true">
-                <i class="fas fa-shopping-bag"></i>
-                <span>Dashboard</span>
+            <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                <i class="fas fa-tachometer-alt nav-icon"></i>
+                <p>Dashboard</p>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed {{ Request::routeIs('interests.index') ? 'active' : '' }}"
-                href="{{ route('interests.index') }}" aria-expanded="true">
-                <i class="fas fa-shopping-bag"></i>
-                <span>Interests</span>
+            <a class="nav-link {{ Request::routeIs('interests*') ? 'active' : '' }}"
+                href="{{ route('interests.index') }}">
+                <i class="fas fa-heart nav-icon"></i>
+                <p>Interests</p>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed {{ Request::routeIs('users.index') ? 'active' : '' }}"
-                href="{{ route('interests.index') }}" aria-expanded="true">
-                <i class="fas fa-shopping-bag"></i>
-                <span>Users</span>
+            <a class="nav-link {{ Request::routeIs('specialties*') ? 'active' : '' }}"
+                href="{{ route('specialties.index') }}">
+                <i class="fas fa-star nav-icon"></i>
+                <p>Specialties</p>
+            </a>
+        </li>
+        <li
+            class="nav-item  {{ Request::routeIs('therapists*') || Request::routeIs('feedbacks*') ? 'menu-open' : '' }}">
+            <a class="nav-link collapsed {{ Request::routeIs('therapists*') || Request::routeIs('feedbacks*') ? 'active' : '' }}"
+                href="{{ route('therapists.index') }}">
+                <i class="fas fa-user nav-icon"></i>
+                <p>Therapists <i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('therapists.index') }}"
+                        class="nav-link {{ Request::routeIs('therapists*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>All Therapists</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('feedbacks*') ? 'active' : '' }}"
+                        href="{{ route('feedbacks.index') }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Feedback</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('feedbacks*') ? 'active' : '' }}"
+                href="{{ route('feedbacks.index') }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Feedback</p>
             </a>
         </li>
 
-        {{-- <li class="nav-item menu-open">
-            <a href="{{ route('interests.index') }}" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Interests
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Active Page</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('interests.index') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Inactive Page</p>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('interests.index') }}" data-toggle="collapse"
-                data-target="#collapseJobs" aria-expanded="true" aria-controls="collapseJobs">
-                <i class="fas fa-shopping-bag"></i>
-                <span>Users</span>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Starter Pages
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Active Page</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Inactive Page</p>
-                    </a>
-                </li>
-            </ul>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    Simple Link
-                    <span class="right badge badge-danger">New</span>
-                </p>
-            </a>
-        </li> --}}
     </ul>
 </nav>
-<!-- /.sidebar-menu -->

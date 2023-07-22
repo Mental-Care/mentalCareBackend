@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('therapists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users', 'id')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users', 'id')->nullOnDelete();
             $table->foreignId('specialty_id')->nullable()->constrained('specialties', 'id')->nullOnDelete();
             $table->foreignId('subSpecialty_id')->nullable()->constrained('specialties', 'id')->nullOnDelete();
             $table->foreignId('interests_id')->nullable()->constrained('interests', 'id')->nullOnDelete();
+            $table->enum('gender', ['male', 'female']);
             $table->string('language');
             $table->string('country');
             $table->string('address');
