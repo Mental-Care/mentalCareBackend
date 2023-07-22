@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Interests;
-use App\Models\Specialties;
-use App\Models\Therapists;
+use App\Models\Interest;
+use App\Models\Specialty;
+use App\Models\Therapist;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class TherapistsController extends Controller
+class TherapistController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $therapists = Therapists::paginate(5);
+        $therapists = Therapist::paginate(5);
         return view('dashboard.therapists.index', compact('therapists'));
         //return $interests;
     }
@@ -26,10 +26,10 @@ class TherapistsController extends Controller
      */
     public function create()
     {
-        $therapist = new Therapists();
-        $specialties = Specialties::where('parent_id', null)->get();
-        $subSpecialties = Specialties::whereNotNull('parent_id')->get();
-        $interests = Interests::all();
+        $therapist = new Therapist();
+        $specialties = Specialty::where('parent_id', null)->get();
+        $subSpecialties = Specialty::whereNotNull('parent_id')->get();
+        $interests = Interest::all();
         return view('dashboard.therapists.create', compact(['therapist', 'specialties', 'subSpecialties', 'interests']));
     }
 
@@ -39,7 +39,7 @@ class TherapistsController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $request->validate(Therapists::rule());
+        $request->validate(Therapist::rule());
         $request->validate(User::rule());
         $user = User::create([
             'name' => $request->name,
@@ -53,7 +53,7 @@ class TherapistsController extends Controller
         ]);
 
         $image = $this->uploadImage($request);
-        $therapist = Therapists::create([
+        $therapist = Therapist::create([
             'user_id' => $user->id,
             'specialty_id' => $request->specialty_id,
             'subSpecialty_id' => $request->subSpecialty_id,
@@ -84,7 +84,7 @@ class TherapistsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Therapists $therapists)
+    public function show(Therapist $therapists)
     {
         //
     }
@@ -94,10 +94,10 @@ class TherapistsController extends Controller
      */
     public function edit($id)
     {
-        $therapist = Therapists::where('id', $id)->first();
-        $specialties = Specialties::where('parent_id', null)->get();
-        $subSpecialties = Specialties::whereNotNull('parent_id')->get();
-        $interests = Interests::all();
+        $therapist = Therapist::where('id', $id)->first();
+        $specialties = Specialty::where('parent_id', null)->get();
+        $subSpecialties = Specialty::whereNotNull('parent_id')->get();
+        $interests = Interest::all();
         return view('dashboard.therapists.edit', compact(['therapist', 'specialties', 'subSpecialties', 'interests']));
     }
 
@@ -106,10 +106,10 @@ class TherapistsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $therapist = Therapists::where('id', $id)->first();
+        $therapist = Therapist::where('id', $id)->first();
         $user = User::where('id', $therapist->user_id)->first();
 
-        $request->validate(Therapists::rule());
+        $request->validate(Therapist::rule());
         $request->validate(User::rule());
 
         $user->update([
@@ -154,7 +154,7 @@ class TherapistsController extends Controller
      */
     public function destroy($id)
     {
-        $therapist = Therapists::findOrFail($id);
+        $therapist = Therapist::findOrFail($id);
         $user = User::findOrFail($therapist->user_id);
         $therapist->delete();
         $user->delete();

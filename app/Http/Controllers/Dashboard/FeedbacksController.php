@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Feedbacks;
 use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+class FeedbacksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,7 @@ class FeedbackController extends Controller
     public function index()
     {
         $feedbacks = Feedbacks::all();
+
         return view('dashboard.feedbacks.index', compact('feedbacks'));
     }
 
@@ -39,7 +40,7 @@ class FeedbackController extends Controller
             'text' => $request->text,
             'date' => $request->date,
         ]);
-        return Redirect()->route('feedbacks.index')->with('success', 'Feedback created!');
+        return Redirect()->route('feedbacks.index')->with('success', 'Feedbacks created!');
     }
 
     /**
@@ -74,7 +75,7 @@ class FeedbackController extends Controller
             'text' => $request->text,
             'date' => $request->date,
         ]);
-        return Redirect()->route('feedbacks.index')->with('success', 'Feedback updated!');
+        return Redirect()->route('feedbacks.index')->with('success', 'Feedbacks updated!');
     }
 
     /**
@@ -84,6 +85,6 @@ class FeedbackController extends Controller
     {
         $feedback = Feedbacks::findOrFail($id);
         $feedback->delete();
-        return redirect()->route('feedbacks.index')->with('success', 'Feedback deleted!');
+        return redirect()->route('feedbacks.index')->with('success', 'Feedbacks deleted!');
     }
 }

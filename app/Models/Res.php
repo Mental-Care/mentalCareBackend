@@ -5,25 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Specialties extends Model
+class Res extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'parent_id',
     ];
 
     public static function rule()
     {
         return [
             'name' => 'required',
-            'parent_id' => 'nullable|exists:specialties,id',
         ];
     }
 
-    public function specialty()
+    public function user()
     {
-        return $this->belongsTo(Specialties::class)->withDefault();
+        return $this->belongsTo(User::class)->withDefault();
     }
 }

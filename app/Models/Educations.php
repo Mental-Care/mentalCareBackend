@@ -5,35 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedbacks extends Model
+class Educations extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'therapist_id',
-        'rate',
-        'text',
-        'date',
+        'title',
+        'place',
+        'fromDate',
+        'toDate',
     ];
 
     public static function rule()
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'therapist_id' => 'required|exists:therapists,id',
-            'rate' => 'required',
-            'text' => 'required',
-            'date' => 'required',
+            'title' => 'required',
+            'place' => 'required',
+            'fromDate' => 'required',
+            'toDate' => 'required',
         ];
     }
 
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault();
-    }
-    public function therapist()
-    {
-        return $this->belongsTo(Therapist::class)->withDefault();
     }
 }

@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Interests extends Model
+class Schedules extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
-        'name',
+        'date',
     ];
 
     public static function rule()
     {
         return [
-            'name' => 'required',
-            'user_id' => 'exists:users,id',
+            'user_id' => 'required|exists:users,id',
+            'date' => 'required',
         ];
     }
 

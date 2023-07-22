@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Interests;
+use App\Models\Interest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class InterestsController extends Controller
+class InterestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $interests = Interests::all();
+        $interests = Interest::all();
         return view('dashboard.interests.index', compact('interests'));
         //return $interests;
     }
@@ -23,7 +23,7 @@ class InterestsController extends Controller
      */
     public function create()
     {
-        $interest = new Interests();
+        $interest = new Interest();
         return view('dashboard.interests.create', compact('interest'));
     }
 
@@ -32,9 +32,9 @@ class InterestsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Interests::rule());
+        $request->validate(Interest::rule());
 
-        $interest = Interests::create([
+        $interest = Interest::create([
             'name' => $request->name,
             'user_id' => $request->user_id,
         ]);
@@ -44,7 +44,7 @@ class InterestsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Interests $interests)
+    public function show(Interest $interests)
     {
         //
     }
@@ -54,7 +54,7 @@ class InterestsController extends Controller
      */
     public function edit($id)
     {
-        $interest = Interests::where('id', $id)->first();
+        $interest = Interest::where('id', $id)->first();
         return view('dashboard.interests.edit', compact('interest'));
     }
 
@@ -63,8 +63,8 @@ class InterestsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $interest = Interests::where('id', $id)->first();
-        $request->validate(Interests::rule());
+        $interest = Interest::where('id', $id)->first();
+        $request->validate(Interest::rule());
         $interest->update([
             'name' => $request->name,
             'user_id' => $request->user_id,
@@ -77,7 +77,7 @@ class InterestsController extends Controller
      */
     public function destroy($id)
     {
-        $interest = Interests::findOrFail($id);
+        $interest = Interest::findOrFail($id);
         $interest->delete();
         return redirect()->route('interests.index')->with('success', 'Interests deleted!');
     }

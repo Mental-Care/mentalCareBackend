@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Interests;
 use App\Http\Controllers\Controller;
-use App\Models\Specialties;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 
-class SpecialtiesController extends Controller
+class SpecialtyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $specialties = Specialties::all();
+        $specialties = Specialty::all();
         return view('dashboard.specialties.index', compact('specialties'));
         //return $interests;
     }
@@ -24,8 +23,8 @@ class SpecialtiesController extends Controller
      */
     public function create()
     {
-        $specialty = new Specialties();
-        $parents = Specialties::all();
+        $specialty = new Specialty();
+        $parents = Specialty::all();
         return view('dashboard.specialties.create', compact(['specialty', 'parents']));
     }
 
@@ -34,19 +33,19 @@ class SpecialtiesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Specialties::rule());
+        $request->validate(Specialty::rule());
 
-        $specialty = Specialties::create([
+        $specialty = Specialty::create([
             'name' => $request->name,
             'parent_id' => $request->parent_id,
         ]);
-        return Redirect()->route('specialties.index')->with('success', 'Specialties created!');
+        return Redirect()->route('specialties.index')->with('success', 'Specialty created!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Interests $interests)
+    public function show()
     {
         //
     }
@@ -56,8 +55,8 @@ class SpecialtiesController extends Controller
      */
     public function edit($id)
     {
-        $specialty = Specialties::where('id', $id)->first();
-        $parents = Specialties::all()->except($id);
+        $specialty = Specialty::where('id', $id)->first();
+        $parents = Specialty::all()->except($id);
         return view('dashboard.specialties.edit', compact(['specialty', 'parents']));
     }
 
@@ -66,13 +65,13 @@ class SpecialtiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $specialty = Specialties::where('id', $id)->first();
-        $request->validate(Specialties::rule());
+        $specialty = Specialty::where('id', $id)->first();
+        $request->validate(Specialty::rule());
         $specialty->update([
             'name' => $request->name,
             'parent_id' => $request->parent_id,
         ]);
-        return redirect()->route('specialties.index')->with('success', 'Specialties updated!');
+        return redirect()->route('specialties.index')->with('success', 'Specialty updated!');
     }
 
     /**
@@ -80,8 +79,8 @@ class SpecialtiesController extends Controller
      */
     public function destroy($id)
     {
-        $specialty = Specialties::findOrFail($id);
+        $specialty = Specialty::findOrFail($id);
         $specialty->delete();
-        return redirect()->route('specialties.index')->with('success', 'Specialties deleted!');
+        return redirect()->route('specialties.index')->with('success', 'Specialty deleted!');
     }
 }
