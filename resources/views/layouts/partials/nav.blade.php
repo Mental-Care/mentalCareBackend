@@ -23,8 +23,8 @@
             </a>
         </li>
         <li
-            class="nav-item  {{ Request::routeIs('therapists*') || Request::routeIs('feedbacks*') ? 'menu-open' : '' }}">
-            <a class="nav-link collapsed {{ Request::routeIs('therapists*') || Request::routeIs('feedbacks*') ? 'active' : '' }}"
+            class="nav-item  {{ Request::routeIs('therapists*') || Request::routeIs('feedbacks*') || Request::routeIs('experiences*') || Request::routeIs('educations*') || Request::routeIs('schedules*') ? 'menu-open' : '' }}">
+            <a class="nav-link collapsed {{ Request::routeIs('therapists*') || Request::routeIs('feedbacks*') || Request::routeIs('experiences*') || Request::routeIs('educations*') || Request::routeIs('schedules*') ? 'active' : '' }}"
                 href="{{ route('therapists.index') }}">
                 <i class="fas fa-user nav-icon"></i>
                 <p>Therapists <i class="fas fa-angle-left right"></i></p>
@@ -70,21 +70,21 @@
 
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-user nav-icon"></i>
                 <p>Users</p>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('res*') && !Request::routeIs('res_*') ? 'active' : '' }}"
                 href="{{ route('res.index') }}">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-star nav-icon"></i>
                 <p>RES</p>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('res_questions*') ? 'active' : '' }}"
                 href="{{ route('res_questions.index') }}">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-star nav-icon"></i>
                 <p>Res_Questions</p>
             </a>
         </li>
@@ -92,27 +92,59 @@
         <li class="nav-item  {{ Request::routeIs('quizzes*') ? 'menu-open' : '' }}">
             <a class="nav-link collapsed {{ Request::routeIs('quizzes*') ? 'active' : '' }}"
                 href="{{ route('quizzes.index') }}">
-                <i class="fas fa-user nav-icon"></i>
+                <i class="fas fa-star nav-icon"></i>
                 <p>Quizzes <i class="fas fa-angle-left right"></i></p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('quizzes*') && !Request::routeIs('quizzes_*') ? 'active' : '' }}"
                         href="{{ route('quizzes.index') }}">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="far fa-circle nav-icon" style="margin-left: 15px;"></i>
                         <p>Quizzes</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('quizzes_questions*') ? 'active' : '' }}"
                         href="{{ route('quizzes_questions.index') }}">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="far fa-circle nav-icon" style="margin-left: 15px;"></i>
                         <p>Quizzes_Quistions</p>
                     </a>
                 </li>
             </ul>
         </li>
 
+        <li
+            class="nav-item
+                                    {{ Request::routeIs('category_blogs*') || Request::routeIs('blogs*') ? 'menu-open' : '' }}">
+            <a class="nav-link collapsed {{ Request::routeIs('category_blogs*') || Request::routeIs('blogs*') ? 'active' : '' }}"
+                href="{{ route('category_blogs.index') }}">
+                <i class="fas fa-star nav-icon"></i>
+                <p>Category Blogs <i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('category_blogs*') ? 'active' : '' }}"
+                        href="{{ route('category_blogs.index') }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Category Blogs</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('blogs*') ? 'active' : '' }}"
+                        href="{{ route('blogs.index') }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Blogs</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('faqs*') ? 'active' : '' }}" href="{{ route('faqs.index') }}">
+                <i class="fas fa-star nav-icon"></i>
+                <p>FAQs</p>
+            </a>
+        </li>
 
     </ul>
 </nav>

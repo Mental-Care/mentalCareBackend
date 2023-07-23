@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('dashboard') }}" class="brand-link">
-                <img src="{{ asset('dist/img/mentalCareLogo.png') }}" alt="mental Care Logo"
+                <img src="{{ asset('dist/img/mentalCareLogo4.jpeg') }}" alt="mental Care Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 {{-- <img src="https://ui-avatars.com/api/?name=Mental+Care&background=0D8ABC&color=fff"
                     alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 @section('breadcrumb')
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                                 @show
                             </ol>
                         </div><!-- /.col -->

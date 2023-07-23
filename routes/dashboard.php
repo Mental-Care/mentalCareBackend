@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BlogController;
+use App\Http\Controllers\Dashboard\Category_blogController;
 use App\Http\Controllers\Dashboard\EducationController;
 use App\Http\Controllers\Dashboard\ExperienceController;
+use App\Http\Controllers\Dashboard\FaqsController;
 use App\Http\Controllers\Dashboard\FeedbacksController;
 use App\Http\Controllers\Dashboard\InterestController;
 use App\Http\Controllers\Dashboard\Quizzes_questionController;
@@ -12,6 +15,7 @@ use App\Http\Controllers\Dashboard\SpecialtyController;
 use App\Http\Controllers\Dashboard\SchedulesController;
 use App\Http\Controllers\Dashboard\TherapistController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Models\Blogs;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -32,4 +36,7 @@ Route::middleware('adminaccess')->group(function () {
     Route::resource('dashboard/res_questions', Res_questionsController::class)->middleware(['auth']);
     Route::resource('dashboard/quizzes', QuizzesController::class)->middleware(['auth']);
     Route::resource('dashboard/quizzes_questions', Quizzes_questionController::class)->middleware(['auth']);
+    Route::resource('dashboard/blogs', BlogController::class)->middleware(['auth']);
+    Route::resource('dashboard/category_blogs', Category_blogController::class)->middleware(['auth']);
+    Route::resource('dashboard/faqs', FaqsController::class)->middleware(['auth']);
 });
