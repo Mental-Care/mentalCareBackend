@@ -16,17 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['adminaccess', 'auth', 'verified'])->name('dashboard');
 
-Route::resource('dashboard/interests', InterestController::class)->middleware(['auth']);
-Route::resource('dashboard/specialties', SpecialtyController::class)->middleware(['auth']);
-Route::resource('dashboard/therapists', TherapistController::class)->middleware(['auth']);
-Route::resource('dashboard/feedbacks', FeedbacksController::class)->middleware(['auth']);
-Route::resource('dashboard/experiences', ExperienceController::class)->middleware(['auth']);
-Route::resource('dashboard/educations', EducationController::class)->middleware(['auth']);
-Route::resource('dashboard/schedules', SchedulesController::class)->middleware(['auth']);
-Route::resource('dashboard/users', UserController::class)->middleware(['auth']);
-Route::resource('dashboard/res', ResController::class)->middleware(['auth']);
-Route::resource('dashboard/res_questions', Res_questionsController::class)->middleware(['auth']);
-Route::resource('dashboard/quizzes', QuizzesController::class)->middleware(['auth']);
-Route::resource('dashboard/quizzes_questions', Quizzes_questionController::class)->middleware(['auth']);
+Route::middleware('adminaccess')->group(function () {
+
+    Route::resource('dashboard/interests', InterestController::class)->middleware(['auth']);
+    Route::resource('dashboard/specialties', SpecialtyController::class)->middleware(['auth']);
+    Route::resource('dashboard/therapists', TherapistController::class)->middleware(['auth']);
+    Route::resource('dashboard/feedbacks', FeedbacksController::class)->middleware(['auth']);
+    Route::resource('dashboard/experiences', ExperienceController::class)->middleware(['auth']);
+    Route::resource('dashboard/educations', EducationController::class)->middleware(['auth']);
+    Route::resource('dashboard/schedules', SchedulesController::class)->middleware(['auth']);
+    Route::resource('dashboard/users', UserController::class)->middleware(['auth']);
+    Route::resource('dashboard/res', ResController::class)->middleware(['auth']);
+    Route::resource('dashboard/res_questions', Res_questionsController::class)->middleware(['auth']);
+    Route::resource('dashboard/quizzes', QuizzesController::class)->middleware(['auth']);
+    Route::resource('dashboard/quizzes_questions', Quizzes_questionController::class)->middleware(['auth']);
+});
