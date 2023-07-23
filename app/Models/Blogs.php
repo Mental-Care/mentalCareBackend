@@ -26,7 +26,7 @@ class Blogs extends Model
             'categoryBlogs_id' => 'required',
             'subCategoryBlogs_id' => 'required',
             'description' => 'required',
-            'cover' => 'required',
+            'cover' => 'nullable',
         ];
     }
 

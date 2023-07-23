@@ -39,6 +39,9 @@ class TherapistController extends Controller
     public function store(Request $request)
     {
         // return $request;
+        $request->validate([
+            'password' => 'required',
+        ]);
         $request->validate(Therapist::rule());
         $request->validate(User::rule());
         $user = User::create([
@@ -112,10 +115,10 @@ class TherapistController extends Controller
         $request->validate(Therapist::rule());
         $request->validate(User::rule());
 
+        $image = $this->uploadImage($request);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
             'address' => $request->address,
             'role' => 'therapist',
             'gender' => $request->gender,
@@ -145,6 +148,7 @@ class TherapistController extends Controller
             'isPsychotherapy' => $request->isPsychotherapy,
             'Connected' => $request->Connected,
             'isBestTherapist' => $request->isBestTherapist,
+            'image' => $image,
         ]);
         return redirect()->route('therapists.index')->with('success', 'Therapists updated!');
     }
@@ -172,7 +176,7 @@ class TherapistController extends Controller
         //     'disk' => 'public',
         //     $filename
         // ]);
-        $file->move(public_path('uploads'), $filename);
+        $file->move(public_path('uploads/therapists'), $filename);
         /*  $request->merge([
             'image' => $path,
         ]); */

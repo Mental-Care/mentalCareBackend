@@ -34,7 +34,6 @@ class User extends Authenticatable
         return [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'address' => 'nullable',
             'role' => 'nullable',
             'gender' => 'nullable',

@@ -21,7 +21,9 @@
         {{-- first use ( $category->name ?? '' )  its quick if-else --}}
         {{-- second  pass empty object in variable $category in Controller --}}
         {{-- second better --}}
-        @include('dashboard.users._form')
+        @include('dashboard.users._form', [
+            'button_label' => 'Create',
+        ])
     </form>
 @endsection
 

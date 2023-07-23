@@ -18,17 +18,23 @@
     <label for="">Email</label>
     <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}">
 </div>
-<div class="form-group">
-    <label for="">Password</label>
-    <input type="password" name="password" class="form-control" value="{{ old('password', $user->password) }}">
-</div>
+@if ($button_label == 'Create')
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" name="password" class="form-control" value="{{ old('password', $user->password) }}">
+    </div>
+@endif
 <div class="form-group">
     <label for="">Address</label>
     <input type="text" name="address" class="form-control" value="{{ old('address', $user->address) }}">
 </div>
 <div class="form-group">
     <label for="">Role</label>
-    <input type="text" name="role" class="form-control" value="{{ old('role', $user->role) }}">
+    <select name="role"class="form-control form-select">
+        <option value="user" @selected('user' == $user->role)>user</option>
+        <option value="therapist" @selected('therapist' == $user->role)>therapist</option>
+        <option value="admin" @selected('admin' == $user->role)>admin</option>
+    </select>
 </div>
 <div class="form-group">
     <label for="">Gender</label>

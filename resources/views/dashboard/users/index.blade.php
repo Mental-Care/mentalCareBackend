@@ -34,7 +34,6 @@
                     <th>ID</th>
                     <th>name</th>
                     <th>email</th>
-                    <th>password</th>
                     <th>address</th>
                     <th>role</th>
                     <th>gender</th>
@@ -50,12 +49,13 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->password }}</td>
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->role }}</td>
                         <td>{{ $user->gender }}</td>
                         <td>{{ $user->date }}</td>
-                        <td>{{ $user->image }}</td>
+                        <td>
+                            <img src="{{ asset('uploads/users/' . $user->image) }}" alt="" height="50">
+                        </td>
                         <td>{{ $user->number }}</td>
                         <td>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
@@ -79,6 +79,8 @@
             </tbody>
         </table>
     </div>
+    <br>
+    {{ $users->links() }}
 @endsection
 
 {{-- @push('style')

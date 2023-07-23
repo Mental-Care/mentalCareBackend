@@ -49,7 +49,9 @@
                     <td>{{ $blog->categoryBlogs_id }}</td>
                     <td>{{ $blog->subCategoryBlogs_id }}</td>
                     <td>{{ $blog->description }}</td>
-                    <td>{{ $blog->cover }}</td>
+                    <td>
+                        <img src="{{ asset('uploads/blogs/' . $blog->cover) }}" alt="" height="50">
+                    </td>
                     <td>
                         <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
                     </td>

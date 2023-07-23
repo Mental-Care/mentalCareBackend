@@ -32,13 +32,14 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate(Blogs::rule());
+        $cover = $this->uploadImage($request);
         $blog = Blogs::create([
             'user_id' => $request->user_id,
             'title' => $request->title,
             'categoryBlogs_id' => $request->categoryBlogs_id,
             'subCategoryBlogs_id' => $request->subCategoryBlogs_id,
             'description' => $request->description,
-            'cover' => $request->cover,
+            'cover' => $cover,
         ]);
         return Redirect()->route('blogs.index')->with('success', 'Blog created!');
     }
@@ -67,14 +68,14 @@ class BlogController extends Controller
     {
         $request->validate(Blogs::rule());
         $blog = Blogs::where('id', $id)->first();
-
+        $cover = $this->uploadImage($request);
         $blog->update([
             'user_id' => $request->user_id,
             'title' => $request->title,
             'categoryBlogs_id' => $request->categoryBlogs_id,
             'subCategoryBlogs_id' => $request->subCategoryBlogs_id,
             'description' => $request->description,
-            'cover' => $request->cover,
+            'cover' => $cover,
         ]);
         return Redirect()->route('blogs.index')->with('success', 'Blog updated!');
     }
@@ -87,5 +88,22 @@ class BlogController extends Controller
         $blog = Blogs::findOrFail($id);
         $blog->delete();
         return redirect()->route('blogs.index')->with('success', 'Blog deleted!');
+    }
+    protected function uploadImage(Request $request)
+    {
+        if (!$request->hasFile('cover')) {
+            return;
+        }
+        $file = $request->file('cover');
+        $filename = rand() . time() . '_' . $file->getClientOriginalName();
+        // $file->store('uploads', [
+        //     'disk' => 'public',
+        //     $filename
+        // ]);
+        $file->move(public_path('uploads/blogs'), $filename);
+        /*  $request->merge([
+            'cover' => $path,
+        ]); */
+        return $filename;
     }
 }

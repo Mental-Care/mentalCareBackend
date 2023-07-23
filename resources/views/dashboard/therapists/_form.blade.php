@@ -20,11 +20,13 @@
     <input type="text" name="email" placeholder="enter email" class="form-control"
         value="{{ old('email', $therapist->user->email) }}">
 </div>
-<div class="form-group">
-    <label for="">Password</label>
-    <input type="password" name="password" placeholder="enter password" class="form-control"
-        value="{{ old('password', $therapist->user->password) }}">
-</div>
+@if ($button_label == 'Create')
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" name="password" placeholder="enter password" class="form-control"
+            value="{{ old('password', $therapist->user->password) }}">
+    </div>
+@endif
 <div class="form-group">
     <label for="">Address</label>
     <input type="text" name="address" placeholder="enter address" class="form-control"

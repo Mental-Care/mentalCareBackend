@@ -88,7 +88,8 @@
                         <td>{{ $therapist->Connected }}</td>
                         <td>{{ $therapist->isBestTherapist }}</td>
                         <td>
-                            <img src="{{ asset('uploads/' . $therapist->image) }}" alt="" height="50">
+                            <img src="{{ asset('uploads/therapists/' . $therapist->image) }}" alt=""
+                                height="50">
                         </td>
                         <td>
                             <a href="{{ route('therapists.edit', $therapist->id) }}"

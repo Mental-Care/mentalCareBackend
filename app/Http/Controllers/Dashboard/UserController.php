@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('dashboard.users.index', compact('users'));
     }
 
@@ -38,7 +38,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'password' => 'required',
+        ]);
         $request->validate(User::rule());
+        $image = $this->uploadImage($request);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -47,7 +51,7 @@ class UserController extends Controller
             'role' => $request->role,
             'gender' => $request->gender,
             'date' => $request->date,
-            'image' => $request->image,
+            'image' => $image,
             'number' => $request->number,
         ]);
 
@@ -88,15 +92,15 @@ class UserController extends Controller
     {
         $request->validate(User::rule());
         $user = User::where('id', $id)->first();
+        $image = $this->uploadImage($request);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
             'address' => $request->address,
             'role' => $request->role,
             'gender' => $request->gender,
             'date' => $request->date,
-            'image' => $request->image,
+            'image' => $image,
             'number' => $request->number,
         ]);
 
@@ -114,5 +118,23 @@ class UserController extends Controller
         $user = User::where('id', $id)->first();
         $user->delete();
         return Redirect()->route('users.index')->with('success', 'User deleted!');
+    }
+
+    protected function uploadImage(Request $request)
+    {
+        if (!$request->hasFile('image')) {
+            return;
+        }
+        $file = $request->file('image');
+        $filename = rand() . time() . '_' . $file->getClientOriginalName();
+        // $file->store('uploads', [
+        //     'disk' => 'public',
+        //     $filename
+        // ]);
+        $file->move(public_path('uploads/users'), $filename);
+        /*  $request->merge([
+            'image' => $path,
+        ]); */
+        return $filename;
     }
 }
