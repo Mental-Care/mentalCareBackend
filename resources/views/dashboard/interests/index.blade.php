@@ -34,6 +34,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>User ID</th>
+                <th colspan="2"></th>
             </tr>
         </thead>
         <tbody>

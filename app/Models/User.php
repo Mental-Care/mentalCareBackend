@@ -21,7 +21,27 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'role',
+        'gender',
+        'date',
+        'image',
+        'number',
     ];
+
+    public static function rule()
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required',
+            'address' => 'nullable',
+            'role' => 'nullable',
+            'gender' => 'nullable',
+            'date' => 'nullable',
+            'image' => 'nullable',
+            'number' => 'nullable',
+        ];
+    }
 
     /**
      * The attributes that should be hidden for serialization.

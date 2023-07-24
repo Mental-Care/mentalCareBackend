@@ -1,19 +1,19 @@
 @extends('layouts.master')
 
 
-@section('title', 'categories')
+@section('title', 'interests')
 
-@section('pageName', 'Category Edit')
+@section('pageName', 'Interest Edit')
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active">Category Edit</li>
+    <li class="breadcrumb-item active">Interest Edit</li>
 @endsection
 
 @section('content')
 
     <div class="mb-5">
-        <a href="{{ route('interests.index') }}" class="btn btn-sm btn-outline-primary">All Categories</a>
+        <a href="{{ route('interests.index') }}" class="btn btn-sm btn-outline-primary">All Interests</a>
     </div>
 
     <form action="{{ route('interests.update', $interest->id) }}" method="post" enctype="multipart/form-data">

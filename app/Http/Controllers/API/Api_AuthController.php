@@ -101,7 +101,7 @@ class Api_AuthController extends Controller
             $success['date'] = $user->date;
             $success['image'] = $user->image;
             $success['number'] = $user->number;
-            
+
             $user->api_token = $token->plainTextToken;
             $user->save();
 
