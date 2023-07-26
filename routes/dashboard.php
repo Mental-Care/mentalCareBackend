@@ -13,14 +13,12 @@ use App\Http\Controllers\Dashboard\Res_questionsController;
 use App\Http\Controllers\Dashboard\ResController;
 use App\Http\Controllers\Dashboard\SpecialtyController;
 use App\Http\Controllers\Dashboard\SchedulesController;
+use App\Http\Controllers\Dashboard\StarterPage;
 use App\Http\Controllers\Dashboard\TherapistController;
 use App\Http\Controllers\Dashboard\UserController;
-use App\Models\Blogs;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['adminaccess', 'auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [StarterPage::class, 'index'])->middleware(['adminaccess', 'auth', 'verified'])->name('dashboard');
 
 Route::middleware('adminaccess')->group(function () {
 
